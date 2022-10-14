@@ -19,11 +19,9 @@ jobs:
           
           curl -L -o ${{ github.workspace }}/app.ipa "${{ github.event.inputs.ipa }}"
           mkdir -p ${{ github.workspace }}/ipa
-          cd ${{ github.workspace }}/ipa
-          unzip ${{ github.workspace }}/app.ipa -d .
-          cd -
+          unzip ${{ github.workspace }}/app.ipa -d ${{ github.workspace }}/ipa
 
-          ${{ github.workspace }}/ldid -S${{ github.workspace }}/ents.plist -M ${{ github.workspace }}/ipa/Payload/*
+          ${{ github.workspace }}/ldid -Sents.plist -M ${{ github.workspace }}/ipa/Payload/*
           
           cd ${{ github.workspace }}/ipa
           zip -r ${{ github.workspace }}/App.ipa .
